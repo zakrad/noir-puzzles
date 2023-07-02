@@ -4,7 +4,7 @@
 // See here: https://noir-lang.org/standard_library/field_methods/#pow_32
 
 fn main(x : Field, y : Field) -> pub Field {
-  // your code here
+  x.pow_32(y)
 }
 
 ////////////////////
