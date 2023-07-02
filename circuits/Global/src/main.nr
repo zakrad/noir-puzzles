@@ -4,8 +4,9 @@
 
 // See here: https://noir-lang.org/language_concepts/mutability/#globals
 
+global globalVar: Field = 10;
+
 fn main(x : Field) -> pub Field {
-  // your code here
   globalVar * x
 }
 
