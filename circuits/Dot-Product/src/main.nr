@@ -6,7 +6,11 @@
 // See here: https://noir-lang.org/language_concepts/control_flow/#loops
 
 fn main(x : [ Field; 4 ], y : [ Field; 4 ]) -> pub Field {
-  // your code here
+  let mut addition : Field = 0;
+  for i in 0..4 {
+    addition += x[i] * y[i];
+  }
+  addition
 }
 
 ////////////////////
