@@ -3,10 +3,12 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 import "../circuits/contract/plonk_vk.sol";
+
 contract Noir is Test {
     UltraVerifier public ultraverifier;
-    bytes32[] public correct_input = new bytes32[](16);
+    bytes32[] public correct_input = new bytes32[](17);
     bytes32[] public wrong_input = new bytes32[](16);
+
     function setUp() public {
         ultraverifier = new UltraVerifier();
         correct_input[0] = bytes32(0x0000000000000000000000000000000000000000000000000000000000000001);
@@ -25,7 +27,7 @@ contract Noir is Test {
         correct_input[13] = bytes32(0x0000000000000000000000000000000000000000000000000000000000000000);
         correct_input[14] = bytes32(0x0000000000000000000000000000000000000000000000000000000000000000);
         correct_input[15] = bytes32(0x0000000000000000000000000000000000000000000000000000000000000001);
-
+        correct_input[16] = bytes32(0x0000000000000000000000000000000000000000000000000000000000000001);
 
         wrong_input[0] = bytes32(0x0000000000000000000000000000000000000000000000000000000000000003);
         wrong_input[1] = bytes32(0x0000000000000000000000000000000000000000000000000000000000000000);
@@ -48,14 +50,13 @@ contract Noir is Test {
     function test_correct_solution() public {
         string memory proof = vm.readLine("./circuits/proofs/p.proof");
         bytes memory proof_in_bytes = vm.parseBytes(proof);
-        ultraverifier.verify(proof_in_bytes,correct_input);
+        ultraverifier.verify(proof_in_bytes, correct_input);
     }
 
     function test_wrong_solution() public {
         vm.expectRevert();
         string memory proof = vm.readLine("./circuits/proofs/p.proof");
         bytes memory proof_in_bytes = vm.parseBytes(proof);
-        ultraverifier.verify(proof_in_bytes,wrong_input);
+        ultraverifier.verify(proof_in_bytes, wrong_input);
     }
-
 }
