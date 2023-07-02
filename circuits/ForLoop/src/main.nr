@@ -5,8 +5,12 @@
 
 // See here: https://noir-lang.org/language_concepts/control_flow/#loops
 
-fn main() -> pub Field {
-  // your code here
+fn main(x : [Field; 3]) -> pub Field {
+  let mut addition: Field = 0;
+  for i in 0..3 {
+    addition += x[i];
+  }
+  addition
 }
 
 ////////////////////
