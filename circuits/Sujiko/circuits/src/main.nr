@@ -11,9 +11,27 @@ use dep::std;
 /// s[6]  s[7]  s[8]
 
 
-fn main(question: pub [Field; 4], solution:[Field; 9]) {
+fn main(question: pub [Field; 4], solution:[Field; 9]) -> pub bool {
    
-    // Your solution starts here ..
+    let mut faults = 0;
+    let mut q:[Field; 4] = [0; 4];
+    q[0] = solution[0] + solution[1] + solution[3] + solution[4];
+    q[1] = solution[1] + solution[2] + solution[4] + solution[5];
+    q[2] = solution[3] + solution[4] + solution[6] + solution[7];
+    q[3] = solution[4] + solution[5] + solution[7] + solution[8];
+
+    for i in 0..4 {
+        assert(is_equal(q[i], question[i]));
+        if !is_equal(q[i], question[i]) {
+            faults += 1;
+        }
+    }
+
+    if faults == 0 {
+        true
+    } else {
+        false
+    }
 
 }
 
