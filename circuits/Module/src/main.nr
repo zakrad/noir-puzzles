@@ -17,8 +17,20 @@
 
 // See here: https://noir-lang.org/modules_packages_crates/modules/
 
+mod math;
+
 fn main(x : Field, y : Field, op : Field) -> pub Field {
-    // your code here
+    let mut result: Field = 0;
+    if op == 0 {
+        result = math::add(x, y);
+    } else if op == 1 {
+        result = math::sub(x, y);  
+    } else if op == 2 {
+        result = math::mul(x, y);  
+    } else if op == 3 {
+        result = math::div(x, y);  
+    }
+    result
 }
 
 ////////////////////
