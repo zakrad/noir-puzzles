@@ -4,7 +4,11 @@
 // first. Then, perform the comparison and return the result.
 
 fn main(x : Field, y : pub Field) -> pub bool {
-  // your code here
+  if x as u32 > y as u32 {
+    true
+  } else {
+    false
+  }
 }
 
 ////////////////////
